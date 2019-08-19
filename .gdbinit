@@ -75,8 +75,8 @@ class GEF(gdb.Command):
         gdb.Command.__init__(self, 'GEF',
                 gdb.COMMAND_USER, gdb.COMPLETE_NONE, True)
         self.name = 'gef'
-        # CHANGE PATH TO PLUGIN PEDA IF NECESSARY
-        self.path = None
+        # CHANGE PATH TO PLUGIN GEF IF NECESSARY
+        self.path = '/home/chenzheng/Documents/gef/gef.py'
 
     def invoke(self, arg, from_tty):
         global name
@@ -93,7 +93,7 @@ class PWNDBG(gdb.Command):
         gdb.Command.__init__(self, 'PWNDBG',
                 gdb.COMMAND_USER, gdb.COMPLETE_NONE, True)
         self.name = 'pwndbg'
-        # CHANGE PATH TO PLUGIN PEDA IF NECESSARY
+        # CHANGE PATH TO PLUGIN PWNDBG IF NECESSARY
         self.path = '/home/chenzheng/Documents/pwndbg/gdbinit.py'
 
     def invoke(self, arg, from_tty):
