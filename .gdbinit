@@ -176,12 +176,38 @@ Syntax: bmain
 | Run program and break on main().
 end
 
+define bbcall
+    # e8: call instruction's op code. 
+    set $_nextaddress = $pc
+    set $_nextaddress = ($_nextaddress + 1)
+    set $_opcode = *(unsigned char*)($_nextaddress)
+    while ($_opcode != 0xe8) 
+        set $_opcode = *(unsigned char*)($_nextaddress++)
+    end
+    set $_nextaddress = ($_nextaddress-1)
+    tbreak *($_nextaddress)
+    continue
+end
+document bbcall
+Syntax: bbcall (break before call)
+| Run program and break on the location which is before next call instruction.
+end
+
+define bacall
+    bbcall
+    nexti
+end
+document bacall 
+Syntax: bacall (break after call)
+| Run program and break on the location which is after next call instruction.
+end
+
 define cls
     shell clear
 end
 document cls
 Syntax: cls
-| Clear screen.
+| Clear screen. Use clear command to delete breakpoints.
 end
 
 define threads
